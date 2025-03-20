@@ -27,7 +27,7 @@ export default function SemesterAnalysis() {
     const fetchStudentData = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`http://localhost:5000/api/student/${regNo}`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/student/${regNo}`);
         if (!response.ok) {
           throw new Error('Failed to fetch student data');
         }
