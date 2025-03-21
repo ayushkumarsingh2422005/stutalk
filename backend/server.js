@@ -3,6 +3,8 @@ import mongoose from 'mongoose';
 import studentRoutes from "./routes/student.routes.js"; // Adjust the path accordingly
 import rankRoutes from "./routes/rank.routes.js"; // Adjust the path accordingly
 import cors from 'cors';
+import { config } from 'dotenv';
+config();
 
 
 
