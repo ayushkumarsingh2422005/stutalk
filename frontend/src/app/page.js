@@ -49,16 +49,19 @@ export default function Home() {
     const fetchStudentData = async () => {
       try {
         setLoading(true);
+        setError(null); // Reset error state before new request
         const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/student/${regNo}`);
         if (!response.ok) {
           throw new Error('Failed to fetch student data');
         }
         const data = await response.json();
-        console.log(data)
+        console.log(data);
         setStudentData(data);
+        setError(null); // Ensure error is cleared when data is successfully fetched
       } catch (err) {
         console.error("Error fetching student data:", err);
         setError(err.message);
+        setStudentData(null); // Reset student data when there's an error
       } finally {
         setLoading(false);
       }

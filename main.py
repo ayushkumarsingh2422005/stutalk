@@ -6,6 +6,12 @@ import json
 import multiprocessing
 from bs4 import BeautifulSoup
 
+SEM = "2"
+FILE = "second"
+ENTRY = range(1, 30)
+FORMAT = "2023UGCM"
+
+
 def collect_metadata(header):
     meta_data = {}
     for i in header:
@@ -96,7 +102,7 @@ def process_student(roll_number):
         # Step 3: Select semester and show results
         if driver.current_url == "http://202.168.87.90/StudentPortal/default.aspx":
             select_element = Select(driver.find_element(By.ID, "ddlSemester"))
-            select_element.select_by_value("1")
+            select_element.select_by_value(SEM) # setting up semester
             driver.find_element(By.ID, "btnimgShowResult").click()
             time.sleep(5)
             
@@ -110,15 +116,11 @@ def process_student(roll_number):
             user_data = table_to_json(table_html, user_data)
             user_data.pop("Semester")
             
-            # for row in rows:
-            #     cells = row.find_elements(By.TAG_NAME, "td")
-            #     result_data.append([cell.text for cell in cells])
-            
             # Save results
-            with open(f"first/{roll_number}.json", "w") as file:
+            with open(f"{FILE}/{roll_number}.json", "w") as file:
                 json.dump(user_data, file, indent=4)
             
-            with open(f"first/{roll_number}.html", "w", encoding="utf-8") as file:
+            with open(f"{FILE}/{roll_number}.html", "w", encoding="utf-8") as file:
                 file.write(table_html)
             
             print(f"{roll_number} results saved.")
@@ -130,6 +132,6 @@ def process_student(roll_number):
         driver.quit()
 
 if __name__ == "__main__":
-    roll_numbers = [f"2023UGCS{str(i).zfill(3)}" for i in range(24, 26)]
+    roll_numbers = [f"{FORMAT}{str(i).zfill(3)}" for i in ENTRY]
     with multiprocessing.Pool(processes=25) as pool:  # Adjust process count as needed
         pool.map(process_student, roll_numbers)
