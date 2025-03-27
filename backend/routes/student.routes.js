@@ -8,6 +8,8 @@ router.get("/:rollNo", async (req, res) => {
         const { rollNo } = req.params;
         const student = await Student.findOne({ "Roll No": rollNo });
 
+        console.log(student)
+
         if (!student) {
             return res.status(404).json({ message: "Student not found" });
         }

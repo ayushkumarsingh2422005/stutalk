@@ -1,30 +1,25 @@
 import mongoose from "mongoose";
 
-const MarksSchema = new mongoose.Schema({
-    subjectCode: String,
-    subjectName: String,
-    internalMarks: String,
-    externalMarks: String,
-    totalMarks: String,
-    grade: String
-});
+
 
 const SemesterSchema = new mongoose.Schema({
     semester: String,  // e.g., "I", "II", "III"
-    subjects: [MarksSchema]
+    subjects: [Object]
 });
 
 const ResultSchema = new mongoose.Schema({
-    semester: String,  // e.g., "I", "II", "III"
-    SGPA: String,
-    CGPA: String
+    type: Map,
+    of: new mongoose.Schema({
+        SGPA: String,
+        CGPA: String
+    }, { _id: false })
 });
 
 const StudentSchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    branch: { type: String, required: true },
-    fatherName: { type: String, required: true },
-    regNo: { type: String, unique: true, required: true },
+    Name: { type: String, required: true },
+    Branch: { type: String, required: true },
+    "Father's Name": { type: String, required: true },
+    "Roll No": { type: String, unique: true, required: true },
     marksData: [SemesterSchema], 
     resultData: [ResultSchema]
 });

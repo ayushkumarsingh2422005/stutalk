@@ -1,7 +1,7 @@
 import express from 'express'
 import mongoose from 'mongoose';
 import studentRoutes from "./routes/student.routes.js"; // Adjust the path accordingly
-import rankRoutes from "./routes/rank.routes.js"; // Adjust the path accordingly
+import leaderboardRoutes from "./routes/leaderboard.routes.js"; // Adjust the path accordingly
 import cors from 'cors';
 import { config } from 'dotenv';
 config();
@@ -21,7 +21,7 @@ mongoose.connect("mongodb+srv://digicraftone:nJ9NLFEck3ARsG1K@cluster0.gkzmb.mon
 
 // Use student routes
 app.use("/api/student", studentRoutes);
-app.use("/api/rank", rankRoutes);
+app.use("/api/leaderboard", leaderboardRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, "0.0.0.0", () => console.log(`Server running on port ${PORT}`));
