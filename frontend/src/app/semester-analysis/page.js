@@ -143,7 +143,13 @@ export default function SemesterAnalysis() {
       >
         <Link href="/">
           <div className="text-xl sm:text-2xl font-bold tracking-tight cursor-pointer hover:text-yellow-300 transition-colors">
-            GradeX
+            <Image
+              src="/main_logo_c.png"
+              alt="GradeX Logo"
+              width={50}
+              height={50}
+              className="invert"
+            />
           </div>
         </Link>
         <div className="flex items-center gap-4">
@@ -229,11 +235,10 @@ export default function SemesterAnalysis() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setSelectedSemester(sem)}
-              className={`px-3 sm:px-4 py-2 rounded-full text-sm sm:text-base font-medium min-w-[60px] ${
-                selectedSemester === sem
+              className={`px-3 sm:px-4 py-2 rounded-full text-sm sm:text-base font-medium min-w-[60px] ${selectedSemester === sem
                   ? "bg-yellow-400 text-black"
                   : "bg-white/10 text-white hover:bg-white/20"
-              } transition-all`}
+                } transition-all`}
             >
               Sem {sem}
             </motion.button>

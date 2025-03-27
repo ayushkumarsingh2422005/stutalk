@@ -252,7 +252,15 @@ export default function Home() {
         transition={{ delay: 0.2 }}
         className="bg-white/10 backdrop-blur-lg text-white py-4 px-4 sm:px-8 flex justify-between items-center w-full max-w-7xl rounded-lg mt-6 shadow-lg"
       >
-        <div className="text-xl sm:text-2xl font-bold tracking-tight">GradeX</div>
+        <div className="text-xl sm:text-2xl font-bold tracking-tight">
+          <Image 
+            src="/main_logo_c.png"
+            alt="GradeX Logo"
+            width={50}
+            height={50}
+            className="invert"
+          />
+        </div>
         <div className="flex items-center gap-4">
           <Link href="/leaderboard" className="text-white/80 hover:text-yellow-300 transition-colors">
             <motion.div

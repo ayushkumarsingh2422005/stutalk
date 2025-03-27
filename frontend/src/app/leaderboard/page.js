@@ -148,7 +148,13 @@ export default function Leaderboard() {
         className="bg-white/10 backdrop-blur-lg text-white py-4 px-4 sm:px-8 flex justify-between items-center w-full max-w-7xl mx-auto rounded-lg mt-6 shadow-lg"
       >
         <Link href="/" className="text-xl sm:text-2xl font-bold tracking-tight hover:text-yellow-300 transition-colors">
-          GradeX
+          <Image
+            src="/main_logo_c.png"
+            alt="GradeX Logo"
+            width={50}
+            height={50}
+            className="invert"
+          />
         </Link>
         <div className="flex items-center gap-4">
           <Link href="/" className="text-white/80 hover:text-yellow-300 transition-colors">
