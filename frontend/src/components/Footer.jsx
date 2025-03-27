@@ -59,7 +59,7 @@ export default function Footer() {
                     </div>
                     <div className="flex space-x-4 mt-4">
                         <motion.a
-                            href="https://github.com/yourusername"
+                            href="https://github.com/ayushkumarsingh2422005/stutalk"
                             target="_blank"
                             rel="noopener noreferrer"
                             whileHover={{ y: -2, scale: 1.1 }}
