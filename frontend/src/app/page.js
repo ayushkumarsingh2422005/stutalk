@@ -51,7 +51,7 @@ export default function Home() {
       try {
         setLoading(true);
         setError(null); // Reset error state before new request
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/student/${regNo}`);
+        const response = await fetch(`/api/student/${regNo}`);
         if (!response.ok) {
           throw new Error('Failed to fetch student data');
         }
@@ -274,6 +274,16 @@ export default function Home() {
           <motion.div
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
+            animate={!isEditing ? {
+              rotate: [0, -20, 20, -30, 30, -20, 20, 0],
+              transition: {
+                duration: 0.8,
+                repeat: Infinity,
+                repeatDelay: 4,
+                ease: "easeInOut",
+                times: [0, 0.2, 0.4, 0.6, 0.8, 0.9, 1, 1]
+              }
+            } : {}}
             className="bg-white/20 px-4 py-2 rounded-full text-base sm:text-lg shadow-md cursor-pointer hover:bg-white/30 transition-all"
             onClick={() => {
               if (!isEditing) {
@@ -547,6 +557,79 @@ export default function Home() {
         ) : (
           <div className="text-white text-center py-8">Loading semester data...</div>
         )}
+      </motion.div>
+
+      {/* Journey Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.8 }}
+        className="w-full max-w-7xl mb-12"
+      >
+        <div className="bg-white/10 backdrop-blur-md p-6 rounded-xl shadow-md">
+          <motion.div
+            whileHover={{ scale: 1.01 }}
+            className="text-2xl sm:text-3xl text-white font-semibold mb-6 border-b border-white/10 pb-3"
+          >
+            Our Journey
+          </motion.div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Initial Conversation Card */}
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              className="bg-gradient-to-r from-blue-900/50 to-purple-900/50 p-6 rounded-lg border border-white/10 hover:border-yellow-300/30 transition-all"
+            >
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-full bg-yellow-400/20 flex items-center justify-center text-yellow-300 text-xl font-bold flex-shrink-0">
+                  💡
+                </div>
+                <div>
+                  <h3 className="text-xl text-white font-semibold mb-2">The Spark</h3>
+                  <p className="text-gray-300 mb-4">
+                    Discover how a simple conversation in class led to an innovative idea that would transform student result analysis.
+                  </p>
+                  <Link href="/journey#conversation">
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="bg-yellow-400/20 text-yellow-300 px-4 py-2 rounded-full text-sm font-semibold hover:bg-yellow-400/30 transition-all"
+                    >
+                      Read the Story →
+                    </motion.button>
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Development Journey Card */}
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              className="bg-gradient-to-r from-purple-900/50 to-pink-900/50 p-6 rounded-lg border border-white/10 hover:border-yellow-300/30 transition-all"
+            >
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-full bg-yellow-400/20 flex items-center justify-center text-yellow-300 text-xl font-bold flex-shrink-0">
+                  🚀
+                </div>
+                <div>
+                  <h3 className="text-xl text-white font-semibold mb-2">Development Journey</h3>
+                  <p className="text-gray-300 mb-4">
+                    Explore our technical journey, from data collection to AI integration, and learn about the challenges we overcame.
+                  </p>
+                  <Link href="/journey#development">
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="bg-yellow-400/20 text-yellow-300 px-4 py-2 rounded-full text-sm font-semibold hover:bg-yellow-400/30 transition-all"
+                    >
+                      View Journey →
+                    </motion.button>
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
       </motion.div>
 
       {/* Creative Footer */}
