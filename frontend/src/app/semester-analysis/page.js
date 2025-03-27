@@ -272,7 +272,7 @@ export default function SemesterAnalysis() {
           transition={{ delay: 0.4 }}
           className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 mb-8 sm:mb-12 px-4"
         >
-          <Link href="/ask-analysis" className="w-full sm:w-auto">
+          <Link href="/ask-anything" className="w-full sm:w-auto">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
